@@ -4,9 +4,9 @@ public class Pencil {
 
 	private String color;
 	private boolean isSharp; 
-	private int condition;
+	private int condition = 5;
 	
-	//constructers 
+	//Constructors 
 	public Pencil(){
 		this.color = "yellow";
 		this.isSharp = true;
@@ -17,7 +17,7 @@ public class Pencil {
 		this.color = color;
 		this.isSharp = isSharp;
 	}
-//getters and setters for each varaible
+//getters and setters for each variable
 	public String getColor() {
 		return color;
 	}
@@ -46,7 +46,7 @@ public class Pencil {
 		if(this.isSharp == true){
 			this.isSharp = false;
 		} else {
-			System.out.println("I'm sorry, we can not permit you to write with your pencil at the moment");
+			System.out.println("I'm sorry, we can not permit you to write with your " + this.color +" pencil at the moment");
 		}
 	}
 	// Will decrease the condition by one and sharpen it
@@ -58,12 +58,23 @@ public class Pencil {
 			System.out.println("I'm Sorry, your pencil no longer exists");
 		}
 	}
-	// prints out inform
+	// prints out information about if it needs to be sharpened
 	public void infoSharp() {
 		if(this.condition > 0 ){
-			System.out.println("Does the " + this.color + " need to be sharpened? " + this.isSharp);
+			System.out.print("Does the " + this.color + " need to be sharpened? ");
+			if(this.isSharp){
+				System.out.println("No");
+			}else {
+				System.out.println("Yes");
+			}
 		} else {
 			System.out.println("I'm Sorry, your pencil no longer exists");
 		}
 	}
+	//tostring
+
+	public String toString() {
+		return "Pencil [color=" + color + ", isSharp=" + isSharp + ", condition=" + condition + "]";
+	}
+	
 }
