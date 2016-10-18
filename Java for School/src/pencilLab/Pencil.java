@@ -71,7 +71,7 @@ public class Pencil {
 			System.out.println("I'm Sorry, your pencil no longer exists");
 		}
 	}
-	//tostring
+	//to string
 
 	public String toString() {
 		return "Pencil [color=" + color + ", isSharp=" + isSharp + ", condition=" + condition + "]";
