@@ -52,7 +52,7 @@ public class Pencil {
 	// Will decrease the condition by one and sharpen it
 	public void sharpen(){
 		if(this.condition > 0){
-			this.condition -= 1;
+			this.condition --;
 			this.isSharp = true;
 		} else {
 			System.out.println("I'm Sorry, your pencil no longer exists");
