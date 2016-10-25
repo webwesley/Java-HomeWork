@@ -4,7 +4,7 @@ public class trueStrings {
 	
 	public static void main(String args[]){
 		
-		System.out.println(stringTrue("Howard", "o" ));
+		System.out.println(stringTrue("Word", "o" ));
 	}
 
 	public static boolean stringTrue(String word, String x){
