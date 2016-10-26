@@ -12,7 +12,7 @@ public class Pencil {
 		this.isSharp = true;
 		this.condition = 5;
 	}
-	
+	//overloaded constructors 
 	public Pencil(String color, boolean isSharp){
 		this.color = color;
 		this.isSharp = isSharp;

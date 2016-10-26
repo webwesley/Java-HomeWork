@@ -3,11 +3,15 @@ package javaStrings;
 public class StringHW {
 	public static void main(String args[]){
 		System.out.println(lastThreeChar("Wesley"));
-		System.out.println(sumChar("Wesley", 'e'));
+		System.out.println(sumChar("book", 'o'b));
 	}
 
 	private static String lastThreeChar(String word){
-		return(word.substring(word.length() - 3, word.length()));
+		if(word.length() < 3){
+			return word;
+		}else {
+		return(word.substring(word.length() - 3));
+		}
 	}
 	
 	private static int sumChar(String word, char letter){
