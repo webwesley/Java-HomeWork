@@ -4,7 +4,7 @@ public class Pencil {
 
 	private String color;
 	private boolean isSharp; 
-	private int condition = 5;
+	private int condition;
 	
 	//Constructors 
 	public Pencil(){
@@ -16,6 +16,7 @@ public class Pencil {
 	public Pencil(String color, boolean isSharp){
 		this.color = color;
 		this.isSharp = isSharp;
+		this.condition = 5; 
 	}
 //getters and setters for each variable
 	public String getColor() {

@@ -3,9 +3,9 @@ package pigLatinLab;
 public class Word {
 
 	private String word;
-	private String vowels = "aeiou";
+	private final String vowels = "aeiou";
 	
-	//constructers
+	//Constructors
 	public Word(){
 		this.word = "word";
 	}
