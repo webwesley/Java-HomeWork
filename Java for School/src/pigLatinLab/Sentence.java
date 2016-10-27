@@ -18,16 +18,24 @@ public class Sentence {
 	}
 	
 	private void pigLatinify(){
-		int startIndex = 0;
-		for(int i = 0; i < this.sentence.length(); i++){
-			String word = this.sentence.substring(startIndex, this.sentence.indexOf(" "));
-			startIndex = this.sentence.indexOf(" ") + 1;
-			Word wordToPigLatin = new Word(word);
-			latinSentence += (wordToPigLatin.pigLatinify2() + " ");
+		while(this.sentence.indexOf(' ') != -1){
+				pigLatinWord(this.sentence.indexOf(' '));
+			}
+			pigLatinWord(this.sentence.length());
 		}
+	
+	// will separate the word in the sentence and make it piglatin
+	private void pigLatinWord(int endIndex){
+		String word = this.sentence.substring(0, endIndex);
+		this.sentence = this.sentence.replaceFirst(word, "");
+		this.sentence = this.sentence.trim();
+		Word wordToPigLatin = new Word(word);
+		latinSentence += (wordToPigLatin.pigLatinify2() + " ");
+		
+		
 	}
 
-	public String getLatinSentence() {
+	public String getPigLatinSentence() {
 		pigLatinify();
 		return latinSentence;
 	}

@@ -16,11 +16,13 @@ public class Word {
 	
 	//returns the index of the first vowel in the word
 	
-	private int isVowel(){
+	private int vowelIndex(){
 		for(int i = 0; i < this.word.length(); i++){
+			char letter = this.word.charAt(i);
 			for(int j = 0; j <= 4; j++){
-				if(this.word.charAt(i) == this.vowels.charAt(j)){
-					return j;
+				char vowel = this.vowels.charAt(j);
+				if(letter == vowel){
+					return i;
 				}
 			}
 		} 
@@ -29,11 +31,11 @@ public class Word {
 	
 	//Piglatinifys the selected word
 	public String pigLatinify2(){
-		if(isVowel() == 0){
+		if(vowelIndex() == 0){
 			return(this.word += "yay");
 		} else {
-			String wordPart = this.word.substring(isVowel());
-			return(wordPart + this.word.substring(0, isVowel()) + "ay");
+			String wordPart = this.word.substring(vowelIndex());
+			return(wordPart + this.word.substring(0, vowelIndex()) + "ay");
 		}
 	}
 
