@@ -3,7 +3,7 @@ package javaStrings;
 public class StringHW {
 	public static void main(String args[]){
 		System.out.println(lastThreeChar("Wesley"));
-		System.out.println(sumChar("book", 'o'b));
+		System.out.println(sumChar("book", 'o'));
 	}
 
 	private static String lastThreeChar(String word){

@@ -34,6 +34,9 @@ public class Sentence {
 		
 		
 	}
+	public String getSentence(){
+		return this.sentence;
+	}
 
 	public String getPigLatinSentence() {
 		pigLatinify();

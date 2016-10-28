@@ -4,39 +4,42 @@ public class Word {
 
 	private String word;
 	private final String vowels = "aeiou";
-	
-	//Constructors
-	public Word(){
+
+	// Constructors
+	public Word() {
 		this.word = "word";
 	}
-	
-	public Word(String word){
+
+	public Word(String word) {
 		this.word = word.toLowerCase();
 	}
-	
-	//returns the index of the first vowel in the word
-	
-	private int vowelIndex(){
-		for(int i = 0; i < this.word.length(); i++){
-			char letter = this.word.charAt(i);
-			for(int j = 0; j <= 4; j++){
-				char vowel = this.vowels.charAt(j);
-				if(letter == vowel){
-					return i;
-				}
+
+	// returns the index of the first vowel in the word
+
+	private int vowelIndex() {
+		int retValue = 0;
+		for (int i = 0; i < this.word.length(); i++) {
+			if (isVowel(this.word.charAt(i))) {
+				retValue = i;
+				break;
 			}
-		} 
-		return 0;
+		}
+		return retValue;
 	}
-	
-	//Piglatinifys the selected word
-	public String pigLatinify2(){
-		if(vowelIndex() == 0){
-			return(this.word += "yay");
+
+	// Piglatinifys the selected word
+	public String pigLatinify2() {
+		if (vowelIndex() == 0) {
+			return (this.word += "yay");
 		} else {
 			String wordPart = this.word.substring(vowelIndex());
-			return(wordPart + this.word.substring(0, vowelIndex()) + "ay");
+			return (wordPart + this.word.substring(0, vowelIndex()) + "ay");
 		}
+	}
+
+	private boolean isVowel(char letter) {
+		return this.vowels.contains(String.valueOf(letter));
+
 	}
 
 }
