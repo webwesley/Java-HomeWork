@@ -36,7 +36,7 @@ public class Word {
 			return (wordPart + this.word.substring(0, vowelIndex()) + "ay");
 		}
 	}
-
+	//checks if the letter is a vowel
 	private boolean isVowel(char letter) {
 		return this.vowels.contains(String.valueOf(letter));
 

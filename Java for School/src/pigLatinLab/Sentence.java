@@ -16,7 +16,7 @@ public class Sentence {
 		this.sentence = sentence.toLowerCase();
 		
 	}
-	
+	//will make the sentence piglatin
 	private void pigLatinify(){
 		while(this.sentence.indexOf(' ') != -1){
 				pigLatinWord(this.sentence.indexOf(' '));
