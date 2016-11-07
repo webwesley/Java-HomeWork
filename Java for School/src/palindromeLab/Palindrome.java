@@ -15,9 +15,9 @@ public class Palindrome {
 	//returns true or false depending if its a palindrome
 	public boolean isPalindrome(){
 		boolean retValue = true;
-		int split = split();
 		removeEverything();
-		for(int i = 0; i < split; i++){
+		int split = split();
+				for(int i = 0; i < split; i++){
 			if(this.word.charAt(i) != this.word.charAt((this.word.length() - 1) - i)){
 				retValue = false;
 				break;
