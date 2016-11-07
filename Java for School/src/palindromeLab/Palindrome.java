@@ -14,30 +14,30 @@ public class Palindrome {
 	}
 	//returns true or false depending if its a palindrome
 	public boolean isPalindrome(){
-		boolean retValue;
+		boolean retValue = true;
 		int split = split();
-		String firstHalf = this.word.substring(0, split);
-		String secondHalf = this.word.substring(split);
-		int firstValue = wordValue(firstHalf);
-		
-		
-		
+		removeEverything();
+		for(int i = 0; i < split; i++){
+			if(this.word.charAt(i) != this.word.charAt((this.word.length() - 1) - i)){
+				retValue = false;
+				break;
+			}
+		 }
 		return retValue;
 	}
 	
-	//gets the middle index of the word
+	//removes punctuation, spaces from word
+	private void removeEverything(){
+		this.word.replaceAll("[^a-zA-Z]", "");
+	}
+	//determins the middle index of the word
 	private int split(){
-		return(this.word.length() / 2) ;
+		return(this.word.length() / 2);
 	}
 	
-	//will add up all the ascii values of each char in the word and return it
-	public int (String str){
-		int retValue;
-		for(int i = 0; i < str.length(); i++){
-			char tmp = str.charAt(i);
-			retValue += ((int)tmp);
-		}
-	}
+
+	
+	
 	
 	
 }
