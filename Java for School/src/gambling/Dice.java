@@ -18,5 +18,10 @@ public class Dice {
 		sum = dieA.roll() + dieB.roll();
 		return sum;
 	}
+
+	public int getSum() {
+		return sum;
+	}
+
 	
 }
