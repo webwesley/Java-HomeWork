@@ -2,6 +2,11 @@ package gambling;
 
 public class Die {
 
+	@Override
+	public String toString() {
+		return "Die [color=" + color + ", value=" + value + "]";
+	}
+
 	private String color;
 	private int value;	
 	

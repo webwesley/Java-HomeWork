@@ -19,7 +19,7 @@ public class Tester {
 				median += dice.getSum();
 			}
 		
-//		}
+	}
 //		int sum = 0;
 //		int tmp = 0;
 //		int mode = 0;
