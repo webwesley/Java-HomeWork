@@ -10,7 +10,7 @@ public class Song {
 	
 	
 	public Song(){
-		this.genera = "Un-Listenible";
+		this.genera = "UnListenible";
 		this.title = "Bad Hombres";
 		this.artist = "Noah Hellman";
 		this.album = "The Essential Hellman";
