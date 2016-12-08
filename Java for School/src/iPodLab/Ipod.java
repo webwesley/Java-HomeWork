@@ -13,12 +13,19 @@ public class Ipod {
 //		for(int i = 0; i < generas.length; i++){
 		
 		Song song = new Song();
-		Song jazzAesthetic = new Song("Noah Hellman", "The Essential Noah Hellman", 204);
+		Song jazzAesthetic = new Song("Jazz Aesthetic", "Noah Hellman", "The Essential Noah Hellman", 204);
 		Song[] unListenible = {jazzAesthetic};
 		
 		Song[] jesusTracks = {};
 		
+		for(int i = 0; i < 50; i++){
+			unListenible[i] = songs[0][i];
 		}
+	}
+	
+	public String printGenera(){
+		System.out.println("What Genera);
+		return songs[]
 			
 	}
 	

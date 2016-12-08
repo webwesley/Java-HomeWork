@@ -1,6 +1,7 @@
 package iPodLab;
 
 public class Song {
+	String title;
 	String artist;
 	String album;
 	int length;
@@ -8,13 +9,15 @@ public class Song {
 	
 	
 	public Song(){
+		this.title = "Bad Hombres";
 		this.artist = "Noah Hellman";
 		this.album = "The Essential Hellman";
 		this.length = 75;
 		this.timesPlayed = 0;
 	}
 	
-	public Song(String artist, String album, int length){
+	public Song(String title, String artist, String album, int length){
+		this.title = title;
 		this.artist = artist;
 		this.album = album;
 		this.length = length;
@@ -55,6 +58,14 @@ public class Song {
 	}
 
 	public String toString(){
-		return (" Artist:" + this.artist + " Album:" + this.album);
+		return ("Title:" + this.title + " Artist:" + this.artist + " Album:" + this.album);
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }
