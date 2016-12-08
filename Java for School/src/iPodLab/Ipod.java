@@ -11,6 +11,14 @@ public class Ipod {
 				
 //		String[] generas = {"Un-Listenible", "Jesus Tracks", "Roll and Rock", "Other"};
 //		for(int i = 0; i < generas.length; i++){
+		
+		Song song = new Song();
+		Song jazzAesthetic = new Song("Noah Hellman", "The Essential Noah Hellman", 204);
+		Song[] unListenible = {jazzAesthetic};
+		
+		Song[] jesusTracks = {};
+		
+		}
 			
 	}
 	

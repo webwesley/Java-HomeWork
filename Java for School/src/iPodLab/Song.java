@@ -1,8 +1,6 @@
 package iPodLab;
 
 public class Song {
-	String genera;
-	String title;
 	String artist;
 	String album;
 	int length;
@@ -10,29 +8,19 @@ public class Song {
 	
 	
 	public Song(){
-		this.genera = "UnListenible";
-		this.title = "Bad Hombres";
 		this.artist = "Noah Hellman";
 		this.album = "The Essential Hellman";
 		this.length = 75;
 		this.timesPlayed = 0;
 	}
 	
-	public Song(String title, String artist, String album, int length){
-		this.title = title;
+	public Song(String artist, String album, int length){
 		this.artist = artist;
 		this.album = album;
 		this.length = length;
 		this.timesPlayed = 0;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
 
 	public String getArtist() {
 		return artist;
@@ -67,6 +55,6 @@ public class Song {
 	}
 
 	public String toString(){
-		return ("Genera:" + this.genera + " Title:" + this.title + " Artist:" + this.artist + " Album:" + this.album);
+		return (" Artist:" + this.artist + " Album:" + this.album);
 	}
 }
