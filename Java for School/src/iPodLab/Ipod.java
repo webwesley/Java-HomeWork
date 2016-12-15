@@ -1,5 +1,6 @@
 package iPodLab;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Ipod {
@@ -81,33 +82,34 @@ public class Ipod {
 		Song[] tmp = new Song[10];
 		for (int i = 0; i < songs.length; i++) {
 			for (int j = 0; i < songs[i].length; j++) {
-				for(int k = 0; k < 10; k++){
-					if(songs[i][j].getTimesPlayed() >= tmp[k].getTimesPlayed()){
+				for (int k = 0; k < 10; k++) {
+					if (songs[i][j].getTimesPlayed() >= tmp[k].getTimesPlayed()) {
 						tmp = shiftDown(tmp, k);
 						tmp[k] = songs[i][j];
 					}
 				}
 			}
 		}
-		for(int i = 0; i < 10; i++){
-			System.out.print(i+1 + ": " + tmp[i].getTitle() + "(" + tmp[i].getTimesPlayed() + ")");
+		for (int i = 0; i < 10; i++) {
+			System.out.print(i + 1 + ": " + tmp[i].getTitle() + "(" + tmp[i].getTimesPlayed() + ")");
 		}
 	}
-	
-	private Song[] shiftDown(Song[] tmp, int index){
-		for(int i = tmp.length - 1; i > index; i--){
+
+	private Song[] shiftDown(Song[] tmp, int index) {
+		for (int i = tmp.length - 1; i > index; i--) {
 			tmp[i] = tmp[i - 1];
 		}
 		return tmp;
 	}
-	
-	public void playSong(){
+
+	public void playSong() {
 		Scanner input = new Scanner(System.in);
 		System.out.print("What Song do you want to play?");
 		String title = input.next();
-		for(int i = 0; i < songs.length; i++){
-			for(int j = 0; i < songs[i].length; i++){
-				if(title == songs[i][j].getTitle()){
+		input.close();
+		for (int i = 0; i < songs.length; i++) {
+			for (int j = 0; i < songs[i].length; i++) {
+				if (title == songs[i][j].getTitle()) {
 					songs[i][j].setTimesPlayed(songs[i][j].getTimesPlayed() + 1);
 					break;
 				}
@@ -116,4 +118,110 @@ public class Ipod {
 		System.out.println("Sorry, that song is not in this iPod");
 	}
 
+	public void playSong(Song song) {
+		song.setTimesPlayed(song.getTimesPlayed() + 1);
+	}
+
+	public void printLongest() {
+		Song[] tmp = new Song[10];
+		for (int i = 0; i < songs.length; i++) {
+			for (int j = 0; i < songs[i].length; j++) {
+				for (int k = 0; k < 10; k++) {
+					if (songs[i][j].getLength() >= tmp[k].getTimesPlayed()) {
+						tmp = shiftDown(tmp, k);
+						tmp[k] = songs[i][j];
+					}
+				}
+			}
+		}
+		for (int i = 0; i < 10; i++) {
+			System.out.print(i + 1 + ": " + tmp[i].getTitle() + "(" + tmp[i].getTimesPlayed() + ")");
+		}
+	}
+
+	public void printShortest() {
+		Song[] tmp = new Song[10];
+		for (int i = 0; i < songs.length; i++) {
+			for (int j = 0; i < songs[i].length; j++) {
+				for (int k = 0; k < 10; k++) {
+					if (songs[i][j].getLength() <= tmp[k].getTimesPlayed()) {
+						tmp = shiftDown(tmp, k);
+						tmp[k] = songs[i][j];
+					}
+				}
+			}
+		}
+		for (int i = 0; i < 10; i++) {
+			System.out.print(i + 1 + ": " + tmp[i].getTitle() + "(" + tmp[i].getTimesPlayed() + ")");
+		}
+	}
+
+	public void randomSong() {
+
+		Random row = new Random();
+		Random col = new Random();
+		int i = row.nextInt(4);
+		int j = col.nextInt(songs[i].length);
+		playSong(songs[i][j]);
+		System.out.println("You just played:" + songs[i][j].getTitle());
+	}
+
+	public void addSong(String title, String artist, String album, int length, String genera) {
+		Song tmp = new Song(title, artist, album, length);
+
+		switch (genera) {
+		case "UnListenible":
+			putInGenera(tmp, 0);
+			break;
+		case "Jesus Tracks":
+			putInGenera(tmp, 1);
+			break;
+		case "Roll and Rock":
+			putInGenera(tmp, 2);
+			break;
+		default:
+			putInGenera(tmp, 3);
+		}
+	}
+
+	private void putInGenera(Song tmp, int genera) {
+		for (int j = 0; j < songs[genera].length; j++) {
+			if (songs[genera][j] == (null)) {
+				songs[genera][j] = tmp;
+				return;
+			}
+		}
+		Song[] copy = new Song[songs[genera].length + 10];
+		songs[genera] = copy;
+	}
+
+	public void deleteSong() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("What Song do you want to delete?");
+		String title = input.next();
+		input.close();
+		for (int i = 0; i < songs.length; i++) {
+			for (int j = 0; i < songs[i].length; i++) {
+				if (title == songs[i][j].getTitle()) {
+					songs[i][j] = null;
+					break;
+				}
+			}
+		}
+		System.out.println("Sorry, that song is not in this iPod");
+	}
+
+	public void printAlbum(){
+		Scanner input = new Scanner(System.in);
+		System.out.print("What album do you want printed out");
+		String album = input.nextLine();
+		input.close();
+		for(int i = 0; i < songs.length; i++){
+			for(int j = 0; j < songs[i].length; i++){
+				if(songs[i][j].getAlbum() == album){
+					System.out.print(j + ":" + songs[i][j].getTitle() + ", " );
+				}
+			}
+		}
+	}
 }
