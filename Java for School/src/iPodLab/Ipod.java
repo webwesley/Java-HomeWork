@@ -89,6 +89,11 @@ public class Ipod {
 				HeavenToStairway, WaterTheOnSmoke, NothingForMoney };
 
 		Song[] Other = { ThomasTheTankEngingeFtBiggieSmalls, MomsSpaghetti, JamesHowardChristmasClassic };
+
+		songs[0] = UnListenible;
+		songs[1] = JesusTracks;
+		songs[2] = RollandRock;
+		songs[3] = Other;
 	}
 
 	public void printGenera() {
@@ -96,67 +101,78 @@ public class Ipod {
 		System.out.print("What Genera do you want? ");
 		String genera = input.nextLine();
 		input.close();
+		genera.toLowerCase();
 		switch (genera) {
-		case "UnListenible":
+		case "unlistenible":
 			System.out.print("Songs in UnListenible:");
-			for (String songName : getGenera(0)) {
+			for (Song song : songs[0]) {
+				String songName = song.getTitle();
 				System.out.print(songName + ", ");
 			}
 			break;
-		case "Jesus Tracks":
+		case "jesus tracks":
 			System.out.print("Songs in Jesus Tracks:");
-			for (String songName : getGenera(1)) {
+			for (Song song : songs[1]) {
+				String songName = song.getTitle();
 				System.out.print(songName + ", ");
 			}
 			break;
-		case "Roll and Rock":
+		case "roll and rock":
 			System.out.print("Songs in Roll and Rock:");
-			for (String songName : getGenera(2)) {
+			for (Song song : songs[2]) {
+				String songName = song.getTitle();
 				System.out.print(songName + ", ");
 			}
 			break;
 		default:
 			System.out.print("Songs not in any specific genera:");
-			for (String songName : getGenera(3)) {
+			for (Song song : songs[3]) {
+				String songName = song.getTitle();
 				System.out.print(songName + ", ");
 			}
 		}
 
 	}
 
-	// returns a 1d string based on the row number
-	private String[] getGenera(int row) {
-		int length = 50;
-		String[] genera = new String[length];
-		for (int i = 0; i < length; i++) {
-			genera[i] = this.songs[row][i].getTitle();
-		}
-		return genera;
-	}
-
 	public void printAllSongs() {
+		System.out.print("All the songs you have are: ");
 		for (int i = 0; i < songs.length; i++) {
-			for (int j = 0; i < songs[i].length; j++) {
-				System.out.print("All the songs you have are:" + songs[i][j].getTitle() + ", ");
+			for (int j = 0; j < songs[i].length; j++) {
+				if (songs[i][j] != null) {
+					System.out.print(songs[i][j].getTitle() + ", ");
+				}
 			}
+			System.out.println();
 		}
 	}
 
 	public void printPopular() {
-		Song[] tmp = new Song[10];
+		Song[] tmp = basicArray();
 		for (int i = 0; i < songs.length; i++) {
-			for (int j = 0; i < songs[i].length; j++) {
-				for (int k = 0; k < 10; k++) {
-					if (songs[i][j].getTimesPlayed() >= tmp[k].getTimesPlayed()) {
+			int length = songs[i].length;
+			for (int j = 23; j < length; j++) {
+				for (int k = 0; k < tmp.length; k++) {
+					Song original = tmp[k];
+					Song replacement = songs[i][j];
+					if ((replacement != null) && (replacement.getTimesPlayed() >= original.getTimesPlayed())) {
 						tmp = shiftDown(tmp, k);
 						tmp[k] = songs[i][j];
+						break;
 					}
 				}
 			}
 		}
 		for (int i = 0; i < 10; i++) {
-			System.out.print(i + 1 + ": " + tmp[i].getTitle() + "(" + tmp[i].getTimesPlayed() + ")");
+			System.out.print(i + 1 + ": " + tmp[i].getTitle() + "(" + tmp[i].getTimesPlayed() + " ) ");
 		}
+	}
+
+	private Song[] basicArray() {
+		Song[] tmp = new Song[10];
+		for (int i = 0; i < 10; i++) {
+			tmp[i] = songs[0][i];
+		}
+		return tmp;
 	}
 
 	private Song[] shiftDown(Song[] tmp, int index) {
@@ -166,11 +182,7 @@ public class Ipod {
 		return tmp;
 	}
 
-	public void playSong() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("What Song do you want to play?");
-		String title = input.next();
-		input.close();
+	public void playSong(String title) {
 		for (int i = 0; i < songs.length; i++) {
 			for (int j = 0; i < songs[i].length; i++) {
 				if (title == songs[i][j].getTitle()) {
@@ -187,36 +199,34 @@ public class Ipod {
 	}
 
 	public void printLongest() {
-		Song[] tmp = new Song[10];
+		Song[] tmp = basicArray();
 		for (int i = 0; i < songs.length; i++) {
-			for (int j = 0; i < songs[i].length; j++) {
+			for (int j = 0; j < songs[i].length; j++) {
 				for (int k = 0; k < 10; k++) {
-					if (songs[i][j].getLength() >= tmp[k].getTimesPlayed()) {
-						tmp = shiftDown(tmp, k);
-						tmp[k] = songs[i][j];
+					if ((songs[i][j] != null) && (songs[i][j].getLength() > tmp[k].getLength())) {
+						System.out.print(songs[i][j] + "; ");
+						break;
 					}
+					break;
 				}
 			}
-		}
-		for (int i = 0; i < 10; i++) {
-			System.out.print(i + 1 + ": " + tmp[i].getTitle() + "(" + tmp[i].getTimesPlayed() + ")");
 		}
 	}
-
+	
+		
+		
 	public void printShortest() {
-		Song[] tmp = new Song[10];
+		Song[] tmp = basicArray();
 		for (int i = 0; i < songs.length; i++) {
-			for (int j = 0; i < songs[i].length; j++) {
+			for (int j = 0; j < songs[i].length; j++) {
 				for (int k = 0; k < 10; k++) {
-					if (songs[i][j].getLength() <= tmp[k].getTimesPlayed()) {
-						tmp = shiftDown(tmp, k);
-						tmp[k] = songs[i][j];
+					if ((songs[i][j] != null) && (songs[i][j].getLength() < tmp[k].getLength())) {
+						System.out.print(songs[i][j] + "; ");
+						break;
 					}
+					break;
 				}
 			}
-		}
-		for (int i = 0; i < 10; i++) {
-			System.out.print(i + 1 + ": " + tmp[i].getTitle() + "(" + tmp[i].getTimesPlayed() + ")");
 		}
 	}
 
@@ -225,22 +235,27 @@ public class Ipod {
 		Random row = new Random();
 		Random col = new Random();
 		int i = row.nextInt(4);
-		int j = col.nextInt(songs[i].length);
+		int length = songs[i].length;
+		int j = col.nextInt(length);
+		while (songs[i][j] == null) {
+			j = col.nextInt(length - 1);
+			length--;
+		}
 		playSong(songs[i][j]);
-		System.out.println("You just played:" + songs[i][j].getTitle());
+		System.out.println("You just played: " + songs[i][j].getTitle());
 	}
 
 	public void addSong(String title, String artist, String album, int length, String genera) {
-		Song tmp = new Song(title, artist, album, length);
+		Song tmp = new Song(title.toLowerCase(), artist.toLowerCase(), album.toLowerCase(), length);
 
 		switch (genera) {
-		case "UnListenible":
+		case "unlistenible":
 			putInGenera(tmp, 0);
 			break;
-		case "Jesus Tracks":
+		case "jesus tracks":
 			putInGenera(tmp, 1);
 			break;
-		case "Roll and Rock":
+		case "roll and rock":
 			putInGenera(tmp, 2);
 			break;
 		default:
@@ -275,15 +290,25 @@ public class Ipod {
 		System.out.println("Sorry, that song is not in this iPod");
 	}
 
-	public void printAlbum(){
+	public void printAlbum() {
 		Scanner input = new Scanner(System.in);
 		System.out.print("What album do you want printed out");
 		String album = input.nextLine();
 		input.close();
-		for(int i = 0; i < songs.length; i++){
-			for(int j = 0; j < songs[i].length; i++){
-				if(songs[i][j].getAlbum() == album){
-					System.out.print(j + ":" + songs[i][j].getTitle() + ", " );
+		for (int i = 0; i < songs.length; i++) {
+			for (int j = 0; j < songs[i].length; i++) {
+				if (songs[i][j].getAlbum() == album) {
+					System.out.print(j + ":" + songs[i][j].getTitle() + ", ");
+				}
+			}
+		}
+	}
+
+	public void printArtist(String artist) {
+		for (int i = 0; i < songs.length; i++) {
+			for (int j = 0; j < songs[i].length; j++) {
+				if (songs[i][j].getArtist() == artist) {
+					System.out.print(songs[i][j] + "; ");
 				}
 			}
 		}
