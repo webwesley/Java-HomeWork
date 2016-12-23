@@ -7,8 +7,6 @@ public class iPodLabTester {
 		
 		iPod.printGenera();
 		addSpace();
-		iPod.printAllSongs();
-		//clear;
 		randomize(iPod);
 		//clear();
 		iPod.printPopular();
@@ -25,9 +23,11 @@ public class iPodLabTester {
 		//clear();
 		iPod.addSong("4:33", "John Cage", "Swanky Silence", 277, "Other");
 		//clear();
+		iPod.printAllSongs();
 		iPod.deleteSong("Bad Hombres");
+		iPod.printAllSongs();
 		//clear();
-		iPod.printAlbum();
+//		iPod.printAlbum();
 		
 		
 	}

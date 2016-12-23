@@ -278,7 +278,8 @@ public class Ipod {
 	public void deleteSong(String title) {
 		for (int i = 0; i < songs.length; i++) {
 			for (int j = 0; j < songs[i].length; j++) {
-				if ((songs[i][j] != null) && (title.toLowerCase() == songs[i][j].getTitle().toLowerCase())) {
+				Song tmp = songs[i][j];
+				if ((tmp != null) && (title.toLowerCase() == tmp.getTitle().toLowerCase())) {
 					songs[i][j] = null;
 					break;
 				}
@@ -290,7 +291,7 @@ public class Ipod {
 	public void printAlbum(String album1) {
 		for (int i = 0; i < songs.length; i++) {
 			for (int j = 0; j < songs[i].length; j++) {
-				if (songs[i][j].getAlbum() .equals( album1)) {
+				if (songs[i][j].getAlbum().toLowerCase().equals(album1.toLowerCase())) {
 					System.out.print(j + ":" + songs[i][j].getTitle() + ", ");
 				}
 			}
