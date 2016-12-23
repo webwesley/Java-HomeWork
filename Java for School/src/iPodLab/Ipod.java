@@ -98,7 +98,7 @@ public class Ipod {
 
 	public void printGenera() {
 		Scanner input = new Scanner(System.in);
-		System.out.print("What Genera do you want? ");
+		System.out.print("What Genre do you want? ");
 		String genera = input.nextLine();
 		input.close();
 		genera.toLowerCase();
@@ -261,6 +261,7 @@ public class Ipod {
 		default:
 			putInGenera(tmp, 3);
 		}
+		System.out.println("Congagulations, you just add " + title +" to your iPod");
 	}
 
 	private void putInGenera(Song tmp, int genera) {
@@ -274,14 +275,10 @@ public class Ipod {
 		songs[genera] = copy;
 	}
 
-	public void deleteSong() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("What Song do you want to delete?");
-		String title = input.next();
-		input.close();
+	public void deleteSong(String title) {
 		for (int i = 0; i < songs.length; i++) {
-			for (int j = 0; i < songs[i].length; i++) {
-				if (title == songs[i][j].getTitle()) {
+			for (int j = 0; j < songs[i].length; j++) {
+				if ((songs[i][j] != null) && (title.toLowerCase() == songs[i][j].getTitle().toLowerCase())) {
 					songs[i][j] = null;
 					break;
 				}
@@ -290,14 +287,10 @@ public class Ipod {
 		System.out.println("Sorry, that song is not in this iPod");
 	}
 
-	public void printAlbum() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("What album do you want printed out");
-		String album = input.nextLine();
-		input.close();
+	public void printAlbum(String album1) {
 		for (int i = 0; i < songs.length; i++) {
-			for (int j = 0; j < songs[i].length; i++) {
-				if (songs[i][j].getAlbum() == album) {
+			for (int j = 0; j < songs[i].length; j++) {
+				if (songs[i][j].getAlbum() .equals( album1)) {
 					System.out.print(j + ":" + songs[i][j].getTitle() + ", ");
 				}
 			}

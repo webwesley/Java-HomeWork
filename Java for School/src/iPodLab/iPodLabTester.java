@@ -8,18 +8,26 @@ public class iPodLabTester {
 		iPod.printGenera();
 		addSpace();
 		iPod.printAllSongs();
-		clear();
+		//clear;
 		randomize(iPod);
-		clear();
+		//clear();
 		iPod.printPopular();
-		clear();
+		//clear();
 		iPod.playSong("Bad Hombres");
-		clear();
+		//clear();
 		iPod.printArtist("Noah Hellman");
-		clear();
+		//clear();
 		iPod.printLongest();
-		clear();
+		//clear();
 		iPod.printShortest();
+		//clear();
+		iPod.randomSong();
+		//clear();
+		iPod.addSong("4:33", "John Cage", "Swanky Silence", 277, "Other");
+		//clear();
+		iPod.deleteSong("Bad Hombres");
+		//clear();
+		iPod.printAlbum();
 		
 		
 	}
@@ -30,7 +38,7 @@ public class iPodLabTester {
 	}
 	
 	private static void clear(){
-		for(int i = 0; i <30; i++){
+		for(int i = 0; i <15; i++){
 			System.out.println();
 		}
 	}
