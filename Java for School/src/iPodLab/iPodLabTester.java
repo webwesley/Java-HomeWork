@@ -4,31 +4,36 @@ public class iPodLabTester {
 	
 	public static void main(String args[]){
 		Ipod iPod = new Ipod();
-		
-		iPod.printGenera();
-		addSpace();
+	
 		randomize(iPod);
-		//clear();
+		clear();
 		iPod.printPopular();
-		//clear();
+		clear();
 		iPod.playSong("Bad Hombres");
-		//clear();
+		clear();
 		iPod.printArtist("Noah Hellman");
-		//clear();
+		clear();
 		iPod.printLongest();
-		//clear();
+		clear();
 		iPod.printShortest();
-		//clear();
+		clear();
 		iPod.randomSong();
-		//clear();
+		clear();
+		iPod.printGenera("Other");
+		addSpace();
 		iPod.addSong("4:33", "John Cage", "Swanky Silence", 277, "Other");
-		//clear();
+		addSpace();
+		iPod.printGenera("Other");
+		addSpace();
+		iPod.deleteSong("4:33");
+		addSpace();
+		iPod.printGenera("Other");
+		clear();
 		iPod.printAllSongs();
-		iPod.deleteSong("Bad Hombres");
-		iPod.printAllSongs();
-		//clear();
-//		iPod.printAlbum();
-		
+		clear();
+		iPod.printArtist("Noah Hellman");
+		clear();
+		iPod.printAlbum("Backwards Roll");
 		
 	}
 	
@@ -48,5 +53,6 @@ public class iPodLabTester {
 			iPod.randomSong();
 		}
 	}
+	
 
 }

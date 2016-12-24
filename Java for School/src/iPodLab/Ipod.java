@@ -1,7 +1,7 @@
 package iPodLab;
 
+import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Ipod {
 	Song[][] songs = new Song[4][50];
@@ -96,40 +96,39 @@ public class Ipod {
 		songs[3] = Other;
 	}
 
-	public void printGenera() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("What Genre do you want? ");
-		String genera = input.nextLine();
-		input.close();
-		genera.toLowerCase();
-		switch (genera) {
-		case "unlistenible":
-			System.out.print("Songs in UnListenible:");
-			for (Song song : songs[0]) {
-				String songName = song.getTitle();
-				System.out.print(songName + ", ");
+	public void printGenera(String genera) {
+		genera = genera.toLowerCase();
+		try {
+			switch (genera) {
+			case "unlistenible":
+				System.out.print("Songs in UnListenible: ");
+				for (Song song : songs[0]) {
+					String songName = song.getTitle();
+					System.out.print(songName + ", ");
+				}
+				break;
+			case "jesus tracks":
+				System.out.print("Songs in Jesus Tracks: ");
+				for (Song song : songs[1]) {
+					String songName = song.getTitle();
+					System.out.print(songName + ", ");
+				}
+				break;
+			case "roll and rock":
+				System.out.print("Songs in Roll and Rock: ");
+				for (Song song : songs[2]) {
+					String songName = song.getTitle();
+					System.out.print(songName + ", ");
+				}
+				break;
+			default:
+				System.out.print("Songs in other genera: ");
+				for (Song song : songs[3]) {
+					String songName = song.getTitle();
+					System.out.print(songName + ", ");
+				}
 			}
-			break;
-		case "jesus tracks":
-			System.out.print("Songs in Jesus Tracks:");
-			for (Song song : songs[1]) {
-				String songName = song.getTitle();
-				System.out.print(songName + ", ");
-			}
-			break;
-		case "roll and rock":
-			System.out.print("Songs in Roll and Rock:");
-			for (Song song : songs[2]) {
-				String songName = song.getTitle();
-				System.out.print(songName + ", ");
-			}
-			break;
-		default:
-			System.out.print("Songs not in any specific genera:");
-			for (Song song : songs[3]) {
-				String songName = song.getTitle();
-				System.out.print(songName + ", ");
-			}
+		} catch (Exception e) {
 		}
 
 	}
@@ -184,10 +183,11 @@ public class Ipod {
 
 	public void playSong(String title) {
 		for (int i = 0; i < songs.length; i++) {
-			for (int j = 0; i < songs[i].length; i++) {
+			for (int j = 0; j < songs[i].length; j++) {
 				if (title == songs[i][j].getTitle()) {
 					songs[i][j].setTimesPlayed(songs[i][j].getTimesPlayed() + 1);
-					break;
+					System.out.println("You just played " + songs[i][j].getTitle());
+					return;
 				}
 			}
 		}
@@ -207,14 +207,11 @@ public class Ipod {
 						System.out.print(songs[i][j] + "; ");
 						break;
 					}
-					break;
 				}
 			}
 		}
 	}
-	
-		
-		
+
 	public void printShortest() {
 		Song[] tmp = basicArray();
 		for (int i = 0; i < songs.length; i++) {
@@ -247,7 +244,7 @@ public class Ipod {
 
 	public void addSong(String title, String artist, String album, int length, String genera) {
 		Song tmp = new Song(title.toLowerCase(), artist.toLowerCase(), album.toLowerCase(), length);
-
+		genera = genera.toLowerCase();
 		switch (genera) {
 		case "unlistenible":
 			putInGenera(tmp, 0);
@@ -260,8 +257,9 @@ public class Ipod {
 			break;
 		default:
 			putInGenera(tmp, 3);
+			break;
 		}
-		System.out.println("Congagulations, you just add " + title +" to your iPod");
+		System.out.println("Congagulations, you just add " + title + " to your iPod");
 	}
 
 	private void putInGenera(Song tmp, int genera) {
@@ -269,42 +267,47 @@ public class Ipod {
 			if (songs[genera][j] == (null)) {
 				songs[genera][j] = tmp;
 				return;
+			} else if (j == songs[genera].length - 1) {
+				songs[genera] = Arrays.copyOf(songs[genera], songs[genera].length + 10);
 			}
 		}
-		Song[] copy = new Song[songs[genera].length + 10];
-		songs[genera] = copy;
 	}
 
 	public void deleteSong(String title) {
-		for (int i = 0; i < songs.length; i++) {
+		for (int i = 3; i < songs.length; i++) {
 			for (int j = 0; j < songs[i].length; j++) {
 				Song tmp = songs[i][j];
 				if ((tmp != null) && (title.toLowerCase() == tmp.getTitle().toLowerCase())) {
 					songs[i][j] = null;
-					break;
+					System.out.println("You deleted " + tmp.getTitle());
+					return;
 				}
 			}
 		}
 		System.out.println("Sorry, that song is not in this iPod");
 	}
 
-	public void printAlbum(String album1) {
+	public void printAlbum(String album) {
 		for (int i = 0; i < songs.length; i++) {
 			for (int j = 0; j < songs[i].length; j++) {
-				if (songs[i][j].getAlbum().toLowerCase().equals(album1.toLowerCase())) {
-					System.out.print(j + ":" + songs[i][j].getTitle() + ", ");
+				if ((songs[i][j] != null) && (songs[i][j].getAlbum().toLowerCase().equals(album.toLowerCase()))) {
+					System.out.print(j + 1 + ":" + songs[i][j].getTitle() + ", ");
 				}
 			}
 		}
 	}
 
 	public void printArtist(String artist) {
-		for (int i = 0; i < songs.length; i++) {
-			for (int j = 0; j < songs[i].length; j++) {
-				if (songs[i][j].getArtist() == artist) {
-					System.out.print(songs[i][j] + "; ");
+		try {
+			for (int i = 0; i < songs.length; i++) {
+				for (int j = 0; j < songs[i].length; j++) {
+					if (songs[i][j].getArtist() == artist) {
+						System.out.print(songs[i][j] + "; ");
+					}
 				}
 			}
+		} catch (Exception e) {
+
 		}
 	}
 }
