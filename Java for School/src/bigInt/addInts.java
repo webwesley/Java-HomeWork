@@ -12,28 +12,24 @@ public class addInts {
 
 	// Precondition: the sum fits into N digits.
 
-	private static int[] add(int[] a, int[] b) {
-		long haha = toLong(a);
-		long shortcut = toLong(b);
-		long sum = haha + shortcut;
-		return (toArray(sum));
-	}
-
-	private static long toLong(int[] tmp) {
-		long shortcut = 0;
-		for (int i = 0; i < N; i++) {
-			shortcut += tmp[i] * (Math.pow(10, N - i));
+	public int[] add(int[] a, int[] b) {
+		int[] sum = new int[N];
+		for (int i = N - 1; i >= 0; i--) {
+			int tmp = a[i] + b[i];
+			int tens = (tmp) / 10;
+			int ones = (tmp) % 10;
+			if (i > 0) {
+				sum[i] += ones;
+				sum[i - 1] += tens;
+				if (sum[i] == 10) {
+					sum[i] = 0;
+					sum[i - 1] += 1;
+				}
+			} else {
+				sum[i] += ones;
+			}
 		}
-		return shortcut;
+		return sum;
 	}
 
-	private static int[] toArray(long sum) {
-		String tmp = Long.toString(sum);
-		int[] retVal = new int[N];
-		for (int i = 0; i < N; i++) {
-			retVal[i] = Integer.parseInt(tmp);
-		}
-		return retVal;
-
-	}
 }
